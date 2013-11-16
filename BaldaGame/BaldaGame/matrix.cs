@@ -13,6 +13,12 @@ namespace BaldaGame
                 data[i] = new int[size];
  
         }
+
+        public void clear()
+        {
+            data = new int[0][];
+
+        }
         public matrix(int[] MFI_VECTOR, int[] MFI_SEPARATORS)
         {
             Array.Resize<int[]>(ref data, MFI_SEPARATORS.Length);
