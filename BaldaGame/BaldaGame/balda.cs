@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.IO;
 
 namespace BaldaGame
 {
@@ -9,17 +10,28 @@ namespace BaldaGame
     {
 
         matrix data;            //матрица с словами
-        int countFirst, countsecond;//очкии игроков
+        string words;           //загруженые из словаря слова
+        int countFirst, countSecond;//очкии игроков
         bool playerFirst;///кто ходит из игроков
 
-        balda(int size = 5);//Загружает слова, инициализирует матрицу и счетчеки 
+        public balda(int size = 5/*размер поля для игры*/, string pathToDic = "data.txt"/*путь к словарю*/)//Загружает слова, инициализирует матрицу и счетчеки 
+        {
+            //откриваем поток і загружаем всі слова
+            StreamReader file = new StreamReader(pathToDic, Encoding.UTF8);
+            words = file.ReadToEnd();
+            file.Close();
 
-        public void NewGame();//Если нужно начать игру заново
+            data = new matrix(size);
+            countFirst = countSecond = 0;
+            playerFirst = true;
+        }
+
+        public void NewGame(){}//Если нужно начать игру заново
                               //стираем матрицу, 
                               //выбирает рандомное слово, 
                               //записует его в матрицу, ходит первый игрок.
 
-        public void Move(matrix Words, int[] cells);//Игрок ходит
+        public void Move(matrix Words, int[] cells){}//Игрок ходит
                                                     //Проверяем порядое ячеек
                                                     //Составляет слово из матрицы и ячеек
                                                     //Проверяем слово в словаре
@@ -27,6 +39,29 @@ namespace BaldaGame
                                                     //елсе
                                                     //data = Words
                                                     //след. игрок
+
+        public string GetRandWord(int size = 5)
+        {
+            Random rand = new Random(); 
+            string answer = "";
+            do
+            {
+                int pos = rand.Next(0, words.Length - 100);
+
+
+                while (words[pos] != '\n') pos++;
+                pos++;
+
+                while (words[pos] != '\r')
+                {
+                    answer += words[pos];
+                    pos++;
+                }
+            }
+            while (answer.Length != size);
+
+            return answer;
+        }
                                                    
     }
 }

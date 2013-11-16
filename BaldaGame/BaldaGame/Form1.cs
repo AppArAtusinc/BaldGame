@@ -15,5 +15,11 @@ namespace BaldaGame
         {
             InitializeComponent();
         }
+
+        balda game;
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            game = new balda();
+        }
     }
 }
