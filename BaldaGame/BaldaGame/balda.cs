@@ -12,7 +12,7 @@ namespace BaldaGame
         int countFirst, countsecond;//очкии игроков
         bool playerFirst;///кто ходит из игроков
 
-        balda(int size = 5);//Загружат слова, инициализирует матрицу и счетчеки 
+        balda(int size = 5);//Загружает слова, инициализирует матрицу и счетчеки 
 
         public void NewGame();//Если нужно начать игру заново
                               //стираем матрицу, 
