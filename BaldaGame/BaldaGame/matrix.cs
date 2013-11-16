@@ -6,19 +6,14 @@ namespace BaldaGame
     {
         int[][] data;
 
-        public matrix(int size)
+        public matrix(int size = 0)
         {
             data = new int[size][];
             for (int i = 0; i < size; i++)
                 data[i] = new int[size];
  
         }
-
-        public void clear()
-        {
-            data = new int[0][];
-
-        }
+ 
         public matrix(int[] MFI_VECTOR, int[] MFI_SEPARATORS)
         {
             Array.Resize<int[]>(ref data, MFI_SEPARATORS.Length);
@@ -34,7 +29,6 @@ namespace BaldaGame
                 data[count][MFI_VECTOR[i]-1] = 1;
             }
         }
-
         public matrix(matrix e)
         {
             data = new int[e.Length][];
@@ -46,13 +40,17 @@ namespace BaldaGame
                     data[i][j] = e[i][j];
 
         }
-        public matrix() { }
         public int Length
         {
             get
             {
                 return data.Length;
             }
+        }       
+        public void clear()
+        {
+            data = new int[0][];
+
         }
         public int[] this[int index]
         {

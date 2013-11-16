@@ -31,15 +31,41 @@ namespace BaldaGame
                               //выбирает рандомное слово, 
                               //записует его в матрицу, ходит первый игрок.
 
-        public void Move(matrix Words, int[] cells){}//Игрок ходит
-                                                    //Проверяем порядое ячеек
-                                                    //Составляет слово из матрицы и ячеек
-                                                    //Проверяем слово в словаре
-                                                    //Если солова нет, то ошибка "Слова нет"
-                                                    //елсе
-                                                    //data = Words
-                                                    //след. игрок
+        public void Move(matrix Words, int[] cells)//Игрок ходит
+        //Проверяем порядое ячеек
+        //Составляет слово из матрицы и ячеек
+        //Проверяем слово в словаре
+        //Если солова нет, то ошибка "Слова нет"
+        //елсе
+        //data = Words
+        //след. игрок
+        {
+ 
+        }
 
+        public bool CheckCells(int[] cells)//пока не проверена
+        {
+            for (int i = 0; i < cells.Length - 2; i += 2)
+                for (int j = i+2; j < cells.Length - 2; j += 2)
+                    if (cells[i] == cells[j + 2] && cells[i + 1] == cells[j + 3])
+                        return false;
+
+            for (int i = 0; i < cells.Length - 2; i += 2)
+            {
+                if(cells[i] == cells[i+2] && cells[i+1] == cells[i+3])
+                    return false;
+
+                if (cells[i] == cells[i + 2] && cells[i + 1] != cells[i + 3])
+                    if (cells[i + 1] == cells[i + 3] + 1 || cells[i + 1] == cells[i + 3] - 1)
+                        continue;
+
+                if (cells[i] != cells[i + 2] && cells[i + 1] == cells[i + 3])
+                    if (cells[i] == cells[i + 2] + 1 || cells[i] == cells[i + 2] - 1)
+                        continue;
+                return false;
+            }
+            return true;
+        }
         public string GetRandWord(int size = 5)
         {
             Random rand = new Random(); 
