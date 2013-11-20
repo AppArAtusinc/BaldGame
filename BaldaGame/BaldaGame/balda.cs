@@ -60,8 +60,6 @@ namespace BaldaGame
             for(int i =0;i<cells.Length;i+=2)
                 maybeWord+= (char)Words[cells[i]][cells[i+1]];
 
-           // maybeWord = new string(maybeWord.Reverse().ToArray<char>());
-
             if (CheckWord(maybeWord))
             {
                 data = Words;

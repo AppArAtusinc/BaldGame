@@ -54,7 +54,6 @@ namespace BaldaGame
             buf[buf.Length - 1] = e.ColumnIndex;
             buf[buf.Length - 2] = e.RowIndex;
             cells = buf;
-            dataGridView1.Update();
         }
 
         private void dataGridView1_MouseClick(object sender, MouseEventArgs e)
@@ -68,11 +67,7 @@ namespace BaldaGame
                 for (int i = 0; i < cells.Length; i += 2)
                     dataGridView1.Rows[cells[i]].Cells[cells[i+1]].Style = chek;
             }
-            //if (e.Button == MouseButtons.Right)
-            //    ClearGrid();
-            dataGridView1.Update();
         }
-
 
 
         void ClearGrid()
@@ -80,8 +75,6 @@ namespace BaldaGame
             for (int i = 0; i < dataGridView1.ColumnCount; i++)
                 for (int j = 0; j < dataGridView1.ColumnCount; j++)
                     dataGridView1.Rows[i].Cells[j].Style = notchek;
-
-
             cells = new int[0];
         }
 
@@ -117,7 +110,7 @@ namespace BaldaGame
                     for (int j = 0; j < data.Length; j++)
                         dataGridView1.Rows[i].Cells[j].Value = (char)data[i][j];
 
-                MessageBox.Show("Вы не добавили букву или добавили много.");
+                MessageBox.Show("Вы не добавили букву или добавили больше одной.");
                 return;
             }
             try
@@ -159,8 +152,9 @@ namespace BaldaGame
                    dataGridView1.Rows[i].Cells[j].Value =  (char)buf[i][j];
             label1.Text = "0";
             label2.Text = "0";
-
-            
+            listBox1.Items.Clear();
+            listBox2.Items.Clear();
+            label5.Visible = true;
         }
 
         private void выходToolStripMenuItem_Click(object sender, EventArgs e)

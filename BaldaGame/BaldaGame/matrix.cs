@@ -113,7 +113,7 @@ namespace BaldaGame
 
             return buf;
         }
-        public static bool operator ==(matrix a, matrix b)
+        public static bool operator ==(matrix a, matrix b) //если матрицы равны - значит буква не введена
         {
             for (int i = 0; i < a.Length; i++)
                 for (int j = 0; j < a.Length; j++)
@@ -122,7 +122,7 @@ namespace BaldaGame
             return true;
         }
 
-        public static bool operator !=(matrix a, matrix b)
+        public static bool operator !=(matrix a, matrix b) //если матр не равны - все ок
         {
             for (int i = 0; i < a.Length; i++)
                 for (int j = 0; j < a.Length; j++)
