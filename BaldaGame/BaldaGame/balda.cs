@@ -11,6 +11,7 @@ namespace BaldaGame
 
         matrix data;            //матрица с словами
         string words;           //загруженые из словаря слова
+        string[] allwords;
         int countFirst, countSecond;//очкии игроков
         bool playerFirst;///кто ходит из игроков
 
@@ -26,12 +27,26 @@ namespace BaldaGame
             playerFirst = true;
         }
 
-        public void NewGame(){}//Если нужно начать игру заново
-                              //стираем матрицу, 
-                              //выбирает рандомное слово, 
-                              //записует его в матрицу, ходит первый игрок.
+        public void NewGame()
+        //Если нужно начать игру заново
+        //стираем матрицу, 
+        //выбирает рандомное слово, 
+        //записует его в матрицу, ходит первый игрок.
+        {
+            for (int i = 0; i < data.Length; i++)
+                for (int j = 0; j < data.Length; j++)
+                    data[i][j] = 0;
+            string  s = GetRandWord();
 
-        public void Move(matrix Words, int[] cells)//Игрок ходит
+            for (int i = 0; i<s.Length; i++)
+                data[(data.Length)/2][i] = s[i];
+            allwords = new string[1];
+            allwords[0] = s;
+            playerFirst = true;
+        }
+
+        public string Move(matrix Words, int[] cells)
+        //Игрок ходит
         //Проверяем порядое ячеек
         //Составляет слово из матрицы и ячеек
         //Проверяем слово в словаре
@@ -40,9 +55,48 @@ namespace BaldaGame
         //data = Words
         //след. игрок
         {
- 
-        }
+            string maybeWord="";
 
+            for(int i =0;i<cells.Length;i+=2)
+                maybeWord+= (char)Words[cells[i]][cells[i+1]];
+
+           // maybeWord = new string(maybeWord.Reverse().ToArray<char>());
+
+            if (CheckWord(maybeWord))
+            {
+                data = Words;
+
+                Array.Resize(ref allwords, allwords.Length + 1);
+                allwords[allwords.Length - 1] = maybeWord;
+
+                if (playerFirst)
+                    countFirst += maybeWord.Length;
+                else 
+                    countSecond += maybeWord.Length;
+
+                playerFirst = !playerFirst;
+            }
+            else
+                throw new Error("Слова " + maybeWord + " не существует.");
+
+            return maybeWord;
+        }
+        public bool CurentPlayer()
+        {
+            return playerFirst;
+        }
+        public int[] Rating()
+
+        {
+            int[] d = new int[2];
+            d[0] = countFirst;
+            d[1] = countSecond;
+            return d;
+        }
+        public matrix CurrentMatrix()
+        {
+            return data;
+        }
         public bool CheckCells(int[] cells)//пока не проверена
         {
             for (int i = 0; i < cells.Length - 2; i += 2)
@@ -69,12 +123,11 @@ namespace BaldaGame
         public string GetRandWord(int size = 5)
         {
             Random rand = new Random(); 
-            string answer = "";
+            string answer = "";int pos = 0;
+            pos = rand.Next(0, words.Length-30);
             do
             {
-                int pos = rand.Next(0, words.Length - 100);
-
-
+                answer = "";
                 while (words[pos] != '\n') pos++;
                 pos++;
 
@@ -83,11 +136,42 @@ namespace BaldaGame
                     answer += words[pos];
                     pos++;
                 }
-            }
-            while (answer.Length != size);
+            } while (answer.Length != size);
 
             return answer;
         }
-                                                   
+        public bool CheckWord(string word)//чи існує слово word?
+        {
+            for (int i = 0; i < allwords.Length; i++)
+                if (allwords[i] == word)
+                    throw new Error("Слово "+word+ "уже использовалось.");
+
+                if (words.IndexOf("\r\n" + word + "\r\n") == -1)
+                    return false;
+            return true;
+
+        }
+                    
+    }
+
+    class Error : Exception
+    {
+        string info;
+
+        public Error(string Info = "Error")
+        {
+            info = Info;
+        }
+
+        public Error(Error e)
+        {
+            info = e.info;
+        }
+
+        public string Info()
+        {
+            return info;
+        }
+
     }
 }
