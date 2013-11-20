@@ -115,27 +115,18 @@ namespace BaldaGame
         }
         public static bool operator ==(matrix a, matrix b)
         {
-            int count = 0;
             for (int i = 0; i < a.Length; i++)
                 for (int j = 0; j < a.Length; j++)
                     if (a[i][j] != b[i][j])
-                  count++;
-
-            if (count == 1)
-                return true;
-            return false;
-            
+                      return false;
+            return true;
         }
 
         public static bool operator !=(matrix a, matrix b)
         {
-            int count = 0;
             for (int i = 0; i < a.Length; i++)
                 for (int j = 0; j < a.Length; j++)
                     if (a[i][j] != b[i][j])
-                        count++;
-
-            if (count == 1)
                 return true;
             return false;
         }

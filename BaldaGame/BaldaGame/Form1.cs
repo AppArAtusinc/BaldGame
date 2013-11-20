@@ -68,8 +68,8 @@ namespace BaldaGame
                 for (int i = 0; i < cells.Length; i += 2)
                     dataGridView1.Rows[cells[i]].Cells[cells[i+1]].Style = chek;
             }
-            if (e.Button == MouseButtons.Right)
-                ClearGrid();
+            //if (e.Button == MouseButtons.Right)
+            //    ClearGrid();
             dataGridView1.Update();
         }
 
