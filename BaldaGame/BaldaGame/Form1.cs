@@ -150,8 +150,8 @@ namespace BaldaGame
             for (int i = 0; i < buf.Length; i++)
                 for (int j = 0; j < buf.Length; j++)
                    dataGridView1.Rows[i].Cells[j].Value =  (char)buf[i][j];
-            label1.Text = "0";
-            label2.Text = "0";
+            label1.Text = game.Rating()[0].ToString();
+            label2.Text = game.Rating()[1].ToString();
             listBox1.Items.Clear();
             listBox2.Items.Clear();
             label5.Visible = true;

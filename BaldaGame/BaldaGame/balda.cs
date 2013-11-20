@@ -33,6 +33,7 @@ namespace BaldaGame
         //выбирает рандомное слово, 
         //записует его в матрицу, ходит первый игрок.
         {
+            countFirst = countSecond = 0;
             for (int i = 0; i < data.Length; i++)
                 for (int j = 0; j < data.Length; j++)
                     data[i][j] = 0;
@@ -79,22 +80,25 @@ namespace BaldaGame
 
             return maybeWord;
         }
+
         public bool CurentPlayer()
         {
             return playerFirst;
         }
-        public int[] Rating()
 
+        public int[] Rating()
         {
             int[] d = new int[2];
             d[0] = countFirst;
             d[1] = countSecond;
             return d;
         }
+
         public matrix CurrentMatrix()
         {
             return data;
         }
+
         public bool CheckCells(int[] cells)//пока не проверена
         {
             for (int i = 0; i < cells.Length - 2; i += 2)
