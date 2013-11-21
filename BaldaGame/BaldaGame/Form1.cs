@@ -29,10 +29,16 @@ namespace BaldaGame
             chek.BackColor = Color.DodgerBlue;
             notchek.BackColor = Color.White;
             notchek.SelectionBackColor = Color.White;
-
-            for (int i = 0; i < dataGridView1.ColumnCount; i++)
-                for (int j = 0; j < dataGridView1.ColumnCount; j++)
-                    dataGridView1.Rows[i].Cells[j].Style = notchek;
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                foreach (DataGridViewCell column in row.Cells)
+                {
+                    column.Style = notchek;
+                }
+            }
+            //for (int i = 0; i < dataGridView1.ColumnCount; i++)
+            //    for (int j = 0; j < dataGridView1.ColumnCount; j++)
+            //        dataGridView1.Rows[i].Cells[j].Style = notchek;
             cells = new int[0];
 
             game = new balda();
