@@ -90,7 +90,7 @@ namespace BaldaGame
                 for (int j = 0; j < dataGridView1.ColumnCount; j++)
                 {
                     dataGridView1.Rows[i].Cells[j].Style = notchek;
-                    dataGridView1.Rows[i].Cells[j].Value = "";
+                    dataGridView1.Rows[i].Cells[j].Value = " ";
                 }
             cells = new int[0];
         }
@@ -99,13 +99,37 @@ namespace BaldaGame
         {
             matrix data = new matrix(dataGridView1.RowCount);
 
+
+            data.Copy( game.CurrentMatrix());
+            int count = 0;
             for (int i = 0; i < data.Length; i++)
                 for (int j = 0; j < data.Length; j++)
-                    data[i][j] = dataGridView1.Rows[i].Cells[j].Value.ToString()[0];
+                {
+                    if (data[i][j] == '\0' && dataGridView1.Rows[i].Cells[j].Value.ToString()[0] != '\0')
+                        count++;
+                    if (count > 1)
+                    {
+
+                        for (int ii = 0; ii < data.Length; ii++)
+                            for (int jj = 0; jj < data.Length; jj++)
+                                dataGridView1.Rows[ii].Cells[jj].Value = (char)data[ii][jj];
+                        MessageBox.Show("Вы ввели больше чем 1 символ.");
+                        return;
+
+                    }
+
+
+                }
+
+            for (int i = 0; i < data.Length; i++)
+                for (int j = 0; j < data.Length; j++)
+                    if (dataGridView1.Rows[i].Cells[j].Value.ToString().Length > 0)
+                        data[i][j] = dataGridView1.Rows[i].Cells[j].Value.ToString()[0];
             string word;
 
             if (data == game.CurrentMatrix())
             {
+
                 for (int i = 0; i < data.Length; i++)
                     for (int j = 0; j < data.Length; j++)
                         dataGridView1.Rows[i].Cells[j].Value = (char)data[i][j];
@@ -113,6 +137,8 @@ namespace BaldaGame
                 MessageBox.Show("Вы не добавили букву или добавили больше одной.");
                 return;
             }
+
+
             try
             {
                 word = game.Move(data, cells);
@@ -132,7 +158,11 @@ namespace BaldaGame
             }
             catch (Error ee)
             {
-                ClearGrid(); 
+                ClearGrid();
+                data = game.CurrentMatrix();
+                for (int ii = 0; ii < data.Length; ii++)
+                    for (int jj = 0; jj < data.Length; jj++)
+                        dataGridView1.Rows[ii].Cells[jj].Value = (char)data[ii][jj];
 
                 MessageBox.Show(ee.Info());
             }
