@@ -86,6 +86,19 @@ namespace BaldaGame
             return playerFirst;
         }
 
+        public bool EndGame()
+        {
+            int count = 0;
+            for (int i = 0; i < data.Length; i++)
+                for (int j = 0; j < data.Length; j++)
+                    if (data[i][j] != '\0')
+                        count++;
+            if (count == 25)
+                return true;
+            else
+            return false;
+        }
+
         public int[] Rating()
         {
             int[] d = new int[2];
