@@ -61,15 +61,6 @@ namespace BaldaGame
             buf[buf.Length - 1] = e.ColumnIndex;
             buf[buf.Length - 2] = e.RowIndex;
             cells = buf;
-            if (game.EndGame())
-            {
-                if (game.Rating()[1] > game.Rating()[0])
-                    MessageBox.Show("Конец игры. Победил игрок 2.");
-                if(game.Rating()[1] < game.Rating()[0])
-                    MessageBox.Show("Конец игры. Победил игрок 1.");
-                else
-                    MessageBox.Show("Конец игры. Ничья!");
-            }
         }
 
         private void dataGridView1_MouseClick(object sender, MouseEventArgs e)
@@ -183,6 +174,15 @@ namespace BaldaGame
                 MessageBox.Show(ee.Info());
             }
 
+            if (game.EndGame())
+            {
+                if (game.Rating()[1] > game.Rating()[0])
+                    MessageBox.Show("Конец игры. Победил игрок 2.");
+                if (game.Rating()[1] < game.Rating()[0])
+                    MessageBox.Show("Конец игры. Победил игрок 1.");
+                else
+                    MessageBox.Show("Конец игры. Ничья!");
+            }
             
         }
 
