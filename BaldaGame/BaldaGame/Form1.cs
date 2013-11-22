@@ -183,6 +183,13 @@ namespace BaldaGame
                 else
                     MessageBox.Show("Конец игры. Ничья!");
             }
+            else
+            {
+                if (!game.CurentPlayer())
+                    label7.Text = "2";
+                else
+                    label7.Text = "1";
+            }
             
         }
 
@@ -190,6 +197,8 @@ namespace BaldaGame
         {
             ClearData();
             game.NewGame();
+            label6.Visible = true;
+            label7.Text = "1";
             matrix buf = new matrix();
             buf.Copy(game.CurrentMatrix());
 

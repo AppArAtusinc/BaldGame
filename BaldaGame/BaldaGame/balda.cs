@@ -92,8 +92,6 @@ namespace BaldaGame
                 for (int j = 0; j < data.Length; j++)
                  if (data[i][j] == '\0')
                         return false;
- 
-  
             return true;
         }
 
