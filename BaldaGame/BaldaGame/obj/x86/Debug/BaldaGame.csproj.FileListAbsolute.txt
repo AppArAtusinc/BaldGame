@@ -1,0 +1,8 @@
+D:\GitHub\GitHubRepo\BaldGame\BaldaGame\BaldaGame\bin\Debug\BaldaGame.exe
+D:\GitHub\GitHubRepo\BaldGame\BaldaGame\BaldaGame\bin\Debug\BaldaGame.pdb
+D:\GitHub\GitHubRepo\BaldGame\BaldaGame\BaldaGame\obj\x86\Debug\BaldaGame.Form1.resources
+D:\GitHub\GitHubRepo\BaldGame\BaldaGame\BaldaGame\obj\x86\Debug\BaldaGame.Properties.Resources.resources
+D:\GitHub\GitHubRepo\BaldGame\BaldaGame\BaldaGame\obj\x86\Debug\BaldaGame.csproj.GenerateResource.Cache
+D:\GitHub\GitHubRepo\BaldGame\BaldaGame\BaldaGame\obj\x86\Debug\BaldaGame.exe
+D:\GitHub\GitHubRepo\BaldGame\BaldaGame\BaldaGame\obj\x86\Debug\BaldaGame.pdb
+D:\GitHub\GitHubRepo\BaldGame\BaldaGame\BaldaGame\obj\x86\Debug\BaldaGame.csprojResolveAssemblyReference.cache
